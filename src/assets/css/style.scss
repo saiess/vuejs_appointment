@@ -1,0 +1,179 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap");
+@import "mixin";
+$color1: white;
+$color2: #000000;
+$color3: #525c73;
+$font1: "Montserrat", sans-serif;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-image: url(../image/0.jpg);
+  // width: 100vw;
+  // min-height: 90vh;
+  // background-position: left top;
+  // background-size: auto;
+  // background-repeat: repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+.F-view {
+  margin-top: 2em;
+}
+
+// teeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeest
+
+body,
+div,
+h1,
+form,
+fieldset,
+input,
+textarea {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: none;
+}
+
+#container {
+  @include container;
+}
+
+#container:before {
+  @include before;
+}
+
+#containerL {
+  @include container;
+  height: 20vh;
+}
+
+#containerL:before {
+  @include before;
+}
+
+#form {
+  @include container;
+  min-height: 53vh;
+}
+
+#form:before {
+  @include before;
+}
+
+#affichecontainer{
+  @include container;
+  width: 70vw;
+  height: 60vh;
+  margin-top: 13em;
+}
+
+#affichecontainer:before {
+  @include before;
+}
+
+h1 {
+  font-size: 30px;
+  text-align: center;
+  letter-spacing: 5px;
+  margin: 0 0 44px 0;
+  color:$color3;
+}
+
+label {
+  @include lebels;
+}
+
+input {
+  @include inputs;
+}
+
+textarea {
+  @include text;
+}
+
+input#send {
+  @include buttons;
+}
+
+.btn {
+  @include buttons;
+  margin: 52px 105px 36px 0;
+  background: none;
+  text-decoration: none;
+}
+
+// affichagestyle
+
+.table{
+  width: 100%;
+}
+
+.labelref{
+  padding: 10px 0px 0 30px;
+  font: bold 30px Helvetica, Sans-Serif;
+  text-transform: uppercase;
+  color: #525c73;
+  cursor: pointer;
+  font-size: 20px;
+  text-decoration: none;
+}
+
+#inputref{
+  @include inputs;
+  margin: -2px 0px 0px 40px;
+  width: 215px;
+  background: transparent;
+}
+
+.btnref{
+  @include buttons;
+  width: 60px;
+  height: 44px;
+  margin: 2px 46px 43px 0;
+  padding: 0px 0px 0px 0px;
+  font-size: 42px;
+  background: none;
+  text-decoration: none;
+  border: 3px solid $color3;
+  border-radius: 5px;
+}
+
+tr{
+  font-size: 20px;
+  color: $color3;
+}
+
+// Appointmentstyle
+
+#appointmentcontainer{
+  @include container;
+  height: 54vh;
+}
+
+.inputapp{
+  @include inputs;
+  font-size: 18px;
+  text-align: center;
+  background: none;
+}
+
+.textapp{
+  @include text;
+  margin: -13px 0 40px 0;
+  // background: none;
+  font-size: 22px;
+  padding: 1px 0px 0px 1px;
+  line-height: 42px;
+}
+
+.labelapp{
+  @include lebels;
+}
