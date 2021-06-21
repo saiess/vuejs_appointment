@@ -6,7 +6,7 @@
     <input class="inputapp" type="time" />
     <label for="" class="labelapp">Text:</label>
     <textarea class="textapp" id="" cols="30" rows="10"></textarea>
-    <Button to="/appointment" title="Save" />
+    <Button to="/affichage" title="Save" />
   </div>
 </template>
 
