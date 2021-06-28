@@ -12,7 +12,7 @@ $font1: "Montserrat", sans-serif;
 }
 
 body {
-  background-image: url(../image/20.jpg);
+  background-image: url(../image/1.jpg);
   // width: 100vw;
   // min-height: 90vh;
   // background-position: left top;
@@ -57,6 +57,7 @@ textarea {
 
 #containerL:before {
   @include before;
+  background: none;
 }
 
 #form {
@@ -177,3 +178,6 @@ tr{
 .labelapp{
   @include lebels;
 }
+
+
+// update style

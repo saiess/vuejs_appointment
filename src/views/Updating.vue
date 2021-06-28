@@ -22,13 +22,7 @@
       v-model="consultation"
     ></textarea>
 
-    <input
-      type="button"
-      @click="appoint()"
-      id="sends"
-      class="btn"
-      value="Save"
-    />
+    <input type="button" @click="appoint" id="sends" class="btn" value="Save" />
     <!-- <Button to="/affichage" title="Save" /> -->
   </form>
 </template>
@@ -61,37 +55,58 @@
         today = yyyy + "-" + mm + "-" + dd;
         return today;
       },
-  
+
       async appoint() {
-        var myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/json");
-        myHeaders.append("Cookie", "PHPSESSID=f8dpdhfvffict0768ol4jhmlp4");
 
         var raw = JSON.stringify({
+          id: this.$route.params.id,
           date: this.date,
           time: this.time,
           consultation: this.consultation,
-          reference_id: localStorage.getItem("ref"),
+          reference_id: localStorage.getItem("ref")
         });
 
         var requestOptions = {
           method: "POST",
-          headers: myHeaders,
+          headers:{
+            "Content-Type": "application/json"
+          },
           body: raw,
           redirect: "follow",
         };
 
-        await fetch(
-          "http://online_appointment_project.test/Appointment/add",
+        fetch(
+          "http://online_appointment_project.test/appointment/update",
           requestOptions
         )
           .then((response) => response.text())
-          .then(function(result) {
-            console.log(result);
-            location.replace("/affichage");
-          })
+          .then(() => this.$router.push("/affichage"))
           .catch((error) => console.log("error", error));
       },
+
+      async getsingle() {
+        const response = await fetch(
+          "http://online_appointment_project.test/appointment/getSingle",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              id: this.$route.params.id,
+            }),
+          }
+        );
+
+        const res = await response.json();
+
+        this.date = res[0].date_app;
+        this.time = res[0].time_app;
+        this.consultation = res[0].consultation;
+      },
+    },
+    mounted() {
+      this.getsingle();
     },
   };
 </script>

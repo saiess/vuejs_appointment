@@ -2,12 +2,11 @@
 * {
   margin: 0;
   padding: 0;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
-  background-image: url(../image/20.jpg);
+  background-image: url(../image/1.jpg);
   background-attachment: fixed;
   background-size: 100% 100%;
   background-repeat: no-repeat;
@@ -69,6 +68,7 @@ textarea {
   left: -19px;
   top: 0;
   background: url("../image/shadow.png");
+  background: none;
 }
 
 #form {
@@ -298,4 +298,5 @@ tr {
   margin: 0 10px 40px 0;
   clear: left;
 }
+
 /*# sourceMappingURL=style.css.map */

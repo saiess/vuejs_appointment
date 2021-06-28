@@ -29,6 +29,12 @@ const routes = [
     name: "Appointment",
     component: () => import("../views/Appointment.vue"),
   },
+
+  {
+    path: "/updating/:id",
+    name: "Update",
+    component: () => import("../views/Updating.vue"),
+  },
 ];
 
 const router = createRouter({
