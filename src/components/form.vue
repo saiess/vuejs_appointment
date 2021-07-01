@@ -2,7 +2,7 @@
   <div id="form">
     <form method="">
       <label for="">First name</label>
-      <input type="text" name="registernom" v-model="nom" />
+      <input type="text" name="registernom" v-model="nom" /><br>
 
       <label for="">Last name</label>
       <input type="text" name="registerprenom" v-model="prenom" />
@@ -34,10 +34,6 @@
     },
     methods: {
       async registerF() {
-        var myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/json");
-        myHeaders.append("Cookie", "PHPSESSID=f8dpdhfvffict0768ol4jhmlp4");
-
         var raw = JSON.stringify({
           first_name: this.nom,
           last_name: this.prenom,
@@ -48,7 +44,9 @@
 
         var requestOptions = {
           method: "POST",
-          headers: myHeaders,
+          headers: {
+            "Content-Type": "application/json",
+          },
           body: raw,
           redirect: "follow",
         };
@@ -57,39 +55,13 @@
           "http://online_appointment_project.test/register/add",
           requestOptions
         )
-          .then((response) => response.text())
+          .then((response) => response.json())
           .then(function(result) {
-            console.log(result);
+            localStorage.setItem("ref", result.msg);
             location.replace("/affichage");
           })
           .catch((error) => console.log("error", error));
       },
-      // async registerF() {
-      //   fetch("http://online_appointment_project.test/Register/add", {
-      //     method: "POST",
-      //     headers: {
-      //       "Content-Type": "application/json",
-      //     },
-      //     body: JSON.stringify({
-      //       first_name: this.nom,
-      //       last_name: this.prenom,
-      //       email: this.email,
-      //       phone: this.phone,
-      //       age: this.age,
-      //     }),
-      //   })
-      //     .then((res) => {
-      //       return res.json();
-      //       // this.$router.push({ path: '/liste' })
-      //     })
-      //     .then((res) => {
-      //       this.reference=res;
-      //       this.$router.push("/affichage");
-      //     })
-      //     .catch(function(err) {
-      //       console.log(err);
-      //     });
-      // },
     },
   };
 </script>

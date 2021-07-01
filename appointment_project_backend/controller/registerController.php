@@ -28,13 +28,13 @@ class registerController
             // Ici la création a fonctionné
             // On envoie un code 201
             http_response_code(201);
-            echo json_encode(["message" => "L'ajout a été effectué".$value]);
+            echo json_encode(['msg' => $value]);
 	        }else
 	        {
 	            // Ici la création n'a pas fonctionné
 	            // On envoie un code 503
 	            http_response_code(503);
-	            echo json_encode(["message" => "L'ajout n'a pas été effectué".$value]);         
+	            echo json_encode(["message" => "L'ajout n'a pas été effectué"]);         
 	        }
 		}else
 		{
@@ -43,5 +43,7 @@ class registerController
 		    echo json_encode(["message" => "La méthode n'est pas autorisée"]);
 		}
 	}
+
+	
 
 }

@@ -20,9 +20,9 @@
         <th>Action</th>
       </tr>
       <tr v-for="content in affichage_content" :key="content.id_meeting">
-        <td>{{content.date_app}}</td>
-        <td>{{formatTime(content.time_app)}}</td>
-        <td>{{content.consultation}}</td>
+        <td>{{ content.date_app }}</td>
+        <td>{{ formatTime(content.time_app) }}</td>
+        <td>{{ content.consultation }}</td>
         <td>
           <button @click="remove(content.id_meeting)">
             <i class="fas fa-trash"></i>
@@ -34,9 +34,6 @@
       </tr>
     </table>
   </div>
-
-  
-
 </template>
 
 <script>
@@ -55,20 +52,35 @@
         // time: "",
         // consultation: "",
         // reference_id: "",
-        
       };
     },
     methods: {
-      async show() {
-        fetch(
-          "http://online_appointment_project.test/appointment/index/" +
-            this.reference_id
-        )
-          .then((res) => res.json())
-          .then((data) => (this.affichage_content = data))
-          .catch((err) => console.log(err.message));
-      },
+      // async show() {
+      //   fetch(
+      //     "http://online_appointment_project.test/appointment/index/" +
+      //       this.reference_id
+      //   )
+      //     .then((res) => res.json())
+      //     .then((data) => (this.affichage_content = data))
+      //     .catch((err) => console.log(err.message));
+      // },
+      async read() {
+        let resp = await fetch(
+          "http://online_appointment_project.test/appointment/read",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              reference_id: this.reference_id,
+            }),
+          }
+        );
 
+        this.affichage_content = await resp.json();
+        console.log(this.affichage_content);
+      },
       formatTime(timeString = "") {
         const date = new Date();
 
@@ -87,18 +99,16 @@
         fetch("http://online_appointment_project.test/appointment/delete/" + id)
           .then((response) => response.text())
           .then(() => {
-            this.show();
+            this.read();
           })
           .catch((error) => console.log("error", error));
       },
 
       // update an appointment row
 
-    
-      async modify(id)
-      {
-        this.$router.push({ path: `/updating/${id}` })
-      }
+      async modify(id) {
+        this.$router.push({ path: `/updating/${id}` });
+      },
     },
 
     computed: {
@@ -107,7 +117,7 @@
       },
     },
     mounted() {
-      this.show();
+      this.read();
     },
   };
 </script>

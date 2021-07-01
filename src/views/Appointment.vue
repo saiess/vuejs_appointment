@@ -3,7 +3,7 @@
     <label for="" class="labelapp">Date:</label>
     <input
       class="inputapp"
-      :min="getTodayDate()"
+      :min="getTodayDate"
       type="date"
       name="datename"
       v-model="date"
@@ -53,15 +53,6 @@
     },
 
     methods: {
-      getTodayDate() {
-        var today = new Date();
-        var dd = String(today.getDate()).padStart(2, "0");
-        var mm = String(today.getMonth() + 1).padStart(2, "0");
-        var yyyy = today.getFullYear();
-        today = yyyy + "-" + mm + "-" + dd;
-        return today;
-      },
-  
       async appoint() {
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
@@ -91,6 +82,17 @@
             location.replace("/affichage");
           })
           .catch((error) => console.log("error", error));
+      },
+    },
+
+    computed: {
+      getTodayDate() {
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, "0");
+        var mm = String(today.getMonth() + 1).padStart(2, "0");
+        var yyyy = today.getFullYear();
+        today = yyyy + "-" + mm + "-" + dd;
+        return today;
       },
     },
   };

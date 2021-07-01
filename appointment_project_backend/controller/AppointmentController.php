@@ -4,12 +4,7 @@ require_once "model/AppointmentModel.php";
 
 class AppointmentController
 {
-	function index($ref)
-	{
-		$obj = new AppointmentModel;
-		$Appointment = $obj->getAll($ref);
-		echo json_encode($Appointment);
-	}
+	
 
 
 
@@ -105,10 +100,30 @@ class AppointmentController
 		}
 	}
 
-	function getSingle(){
-		$obj = new AppointmentModel();
-		$data = json_decode(file_get_contents("php://input"));
-		if($obj->getSingle($data->id))
-			echo json_encode([$obj->getSingle($data->id)]);
-	}
+	// function getSingle(){
+	// 	$obj = new AppointmentModel();
+	// 	$data = json_decode(file_get_contents("php://input"));
+	// 	if($obj->getSingle($data->id))
+	// 		echo json_encode([$obj->getSingle($data->id)]);
+	// }
+
+	 function read(){
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $obj = new AppointmentModel();
+            // file_get_contents()     THIS function per default receives data as POST method 
+            $data = json_decode(file_get_contents("php://input"));
+
+		
+            
+
+            if ($obj->read($data)->rowCount() > 0)
+                echo json_encode($obj->read($data)->fetchAll(PDO::FETCH_ASSOC));
+        }
+        else
+        {
+            echo json_encode(["error" =>"use POST method"]);
+        }
+
+    }
 }

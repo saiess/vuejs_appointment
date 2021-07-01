@@ -8,11 +8,20 @@ class AppointmentModel
 
     // static private $table = "user";
 
-    public function getAll($ref)
+    // public function getAll($ref)
+    // {
+    //     $obj = new Connection;
+    //     $obj->reference_id = $ref;
+    //     return $obj->selectAppointment()->fetchAll(PDO::FETCH_ASSOC);
+    // }
+    public function read($data)
     {
         $obj = new Connection;
-        $obj->reference_id = $ref;
-        return $obj->selectAppointment()->fetchAll(PDO::FETCH_ASSOC);
+       $query = "SELECT * FROM appointment WHERE reference_id = '$data->reference_id'";
+ 
+       $stmt = $obj->query($query);
+       $obj->execute();
+       return $stmt;
     }
 
 

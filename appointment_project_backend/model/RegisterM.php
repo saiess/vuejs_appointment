@@ -33,11 +33,14 @@ class RegisterM
         $query = "INSERT INTO user(reference,first_name,last_name,email,phone,age) VALUES ('$reference','$first_name','$last_name','$email',$phone,$age)";
         // return $db->insert(self::$table, ["reference","first_name","last_name","email","phone","age"],[$reference,$first_name,$last_name,$email,$phone,$age]);
 
-        $stmt = $db->query($query);
+        $db->query($query);
 
-        return $db->execute();
+        $db->execute();
+        return $reference;
         // var_dump($stmt->errorInfo());
         //     return $db->execute();
         // echo $first_name;
     }
+
+ 
 }
