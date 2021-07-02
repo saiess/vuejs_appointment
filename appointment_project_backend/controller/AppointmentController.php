@@ -100,12 +100,12 @@ class AppointmentController
 		}
 	}
 
-	// function getSingle(){
-	// 	$obj = new AppointmentModel();
-	// 	$data = json_decode(file_get_contents("php://input"));
-	// 	if($obj->getSingle($data->id))
-	// 		echo json_encode([$obj->getSingle($data->id)]);
-	// }
+	function getSingle(){
+		$obj = new AppointmentModel();
+		$data = json_decode(file_get_contents("php://input"));
+		if($obj->getSingle($data->id))
+			echo json_encode([$obj->getSingle($data->id)]);
+	}
 
 	 function read(){
 
